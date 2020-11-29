@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package rs3;
+
+option go_package = "github.com/alog-rs/proto/rs3";
+
+service Runescape {
+    rpc GetPlayerProfile(GetPlayerProfileRequest) returns (PlayerProfile) {}
+}
+
+enum Skill {
+    ATTACK = 0;
+    DEFENCE = 1;
+    STRENGTH = 2;
+    CONSTITUTION = 3;
+    RANGED = 4;
+    PRAYER = 5;
+    MAGIC = 6;
+    COOKING = 7;
+    WOODCUTTING = 8;
+    FLETCHING = 9;
+    FISHING = 10;
+    FIREMAKING = 11;
+    CRAFTING = 12;
+    SMITHING = 13;
+    MINING = 14;
+    HERBLORE = 15;
+    AGILITY = 16;
+    THIEVING = 17;
+    SLAYER = 18;
+    FARMING = 19;
+    RUNECRAFTING = 20;
+    HUNTER = 21;
+    CONSTRUCTION = 22;
+    SUMMONING = 23;
+    DUNGEONEERING = 24;
+    DIVINATION = 25;
+    INVENTION = 26;
+    ARCHAEOLOGY = 27;
+}
+
+message SkillData {
+    Skill skill = 1;
+    uint32 rank = 2;
+    uint32 level = 3;
+    uint32 virtual_level = 4;
+    uint64 xp = 5;
+}
+
+message QuestData {
+    uint32 completed = 1;
+    uint32 started = 2;
+    uint32 not_started = 3;
+}
+
+message PlayerActivityItem {
+    int64 timestamp = 1;
+    string long = 2;
+    string short = 3;
+}
+
+message PlayerProfile {
+    string name = 1;
+    uint64 rank = 2;
+    uint32 total_level = 3;
+    uint64 total_xp = 4;
+    optional uint32 combat_level = 5; // Only available form RuneMetrics data source
+    optional QuestData quest_info = 6; // Only available from RuneMetrics data source
+    repeated SkillData skills = 7;
+    repeated PlayerActivityItem activity = 8; // Only available from RuneMetrics data source
+}
+
+message GetPlayerProfileRequest {
+    string name = 1;
+    uint32 activity_count = 2;
+}
