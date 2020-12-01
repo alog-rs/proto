@@ -41,16 +41,16 @@ enum Skill {
 
 message SkillData {
     Skill skill = 1;
-    uint32 rank = 2;
-    uint32 level = 3;
-    uint32 virtual_level = 4;
-    uint64 xp = 5;
+    int32 rank = 2;
+    int32 level = 3;
+    int32 virtual_level = 4;
+    int64 xp = 5;
 }
 
 message QuestData {
-    uint32 completed = 1;
-    uint32 started = 2;
-    uint32 not_started = 3;
+    int32 completed = 1;
+    int32 started = 2;
+    int32 not_started = 3;
 }
 
 message PlayerActivityItem {
@@ -61,10 +61,10 @@ message PlayerActivityItem {
 
 message PlayerProfile {
     string name = 1;
-    uint64 rank = 2;
-    uint32 total_level = 3;
-    uint64 total_xp = 4;
-    optional uint32 combat_level = 5; // Only available form RuneMetrics data source
+    int32 rank = 2;
+    int32 total_level = 3;
+    int64 total_xp = 4;
+    int32 combat_level = 5; // Only available form RuneMetrics data source
     optional QuestData quest_info = 6; // Only available from RuneMetrics data source
     repeated SkillData skills = 7;
     repeated PlayerActivityItem activity = 8; // Only available from RuneMetrics data source
@@ -72,5 +72,5 @@ message PlayerProfile {
 
 message GetPlayerProfileRequest {
     string name = 1;
-    uint32 activity_count = 2;
+    int32 activity_count = 2;
 }
