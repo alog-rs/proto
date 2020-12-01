@@ -64,7 +64,7 @@ message PlayerProfile {
     int32 rank = 2;
     int32 total_level = 3;
     int64 total_xp = 4;
-    int32 combat_level = 5; // Only available form RuneMetrics data source
+    optional int32 combat_level = 5; // Only available form RuneMetrics data source
     optional QuestData quest_info = 6; // Only available from RuneMetrics data source
     repeated SkillData skills = 7;
     repeated PlayerActivityItem activity = 8; // Only available from RuneMetrics data source
